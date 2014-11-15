@@ -7,7 +7,7 @@
   "keywords": ["obitos", "portugal"],
   "license": "ODbL",
   "sources": [{
-    "name": "Sistema de Informação dos Certificados de Óbito",
+    "name": "Ministério da Saúde",
     "web": "https://servicos.min-saude.pt/sico/faces/estatisticas.jsp"
   }],
   "maintainers": [{
