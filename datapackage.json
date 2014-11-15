@@ -7,7 +7,7 @@
   "keywords": ["obitos", "portugal"],
   "license": "ODbL",
   "sources": [{
-    "name": "Sistema de Informação dos Certificados de Óbito - Governo de Portugal",
+    "name": "Sistema de Informação dos Certificados de Óbito",
     "web": "https://servicos.min-saude.pt/sico/faces/estatisticas.jsp"
   }],
   "maintainers": [{
@@ -18,7 +18,7 @@
   "resources": [
     {
       "name": "obitos.csv",
-      "path": "obitos.csv",
+      "path": "data/obitos.csv",
       "format": "csv",
       "mediatype": "text/csv",
       "bytes": 22844,
