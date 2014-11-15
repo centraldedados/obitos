@@ -5,12 +5,7 @@
   "description": "Vigilância de Mortalidade",
   "version": "1.0",
   "keywords": ["obitos", "portugal"],
-  "licenses": [{
-    "url": "http://opendatacommons.org/licenses/pddl/",
-    "name": "Open Data Commons Public Domain",
-    "version": "1.0",
-    "id": "odc-pddl"
-  }],
+  "license": "ODbL",
   "sources": [{
     "name": "Sistema de Informação dos Certificados de Óbito - Governo de Portugal",
     "web": "https://servicos.min-saude.pt/sico/faces/estatisticas.jsp"
@@ -26,7 +21,7 @@
       "path": "obitos.csv",
       "format": "csv",
       "mediatype": "text/csv",
-      "bytes": 22088,
+      "bytes": 22844,
       "schema": {
         "fields": [
           {
