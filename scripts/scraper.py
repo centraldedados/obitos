@@ -43,6 +43,28 @@ opener = urllib2.build_opener(urllib2.HTTPCookieProcessor(cj), MyHTTPErrorProces
 
 urllib2.install_opener(opener)
 
+import os.path
+lastMonth = None
+lastYear = None
+lines = []
+if os.path.isfile("../data/obitos.csv"):
+    document = open('../data/obitos.csv', 'r')
+    line = document.readline()
+    line = document.readline()
+    lastYear = int(line[:4])
+    lastMonth = int(line[5:7])
+    for line in document:
+        year = int(line[:4])
+        month = int(line[5:7])
+        if year == lastYear and month == lastMonth:
+            pass
+        else:
+            lines.append(line)
+    document.close()
+
+print("Last update was on " + str(lastMonth) + "/" + str(lastYear))
+# exit()
+
 # ------------------------- get -----------------------
 '''
 First we do a get,scan the page and create de csv files for the first month
@@ -100,9 +122,19 @@ def cyclicGet( response ):
     month = int(monthNumber(soup.find('input', {'id': 'mesEstatistico'}).get('value')))
     year = int(soup.find('input', {'id': 'anoEstatistico'}).get('value'))
 
-    print "Analysing"
-    print month
-    print year
+    # vamos buscar o primeiro dia da legenda. e só queremos saber os n dias antes desse (em que n = numero do dia)
+    legendas = soup.find('input', {'id': 'estatisticasMensais'}).get('value')
+    nD = int(legendas[len(legendas)-10:-8])
+    start = len(numObitosCausaNaturalArray)-nD
+    numObitosCausaNaturalArray = numObitosCausaNaturalArray[start:]
+    numObitosCausaNaoNaturalArray = numObitosCausaNaoNaturalArray[start:]
+    numObitosSujeitoInvestigacaoArray = numObitosSujeitoInvestigacaoArray[start:]
+    numAcidenteTrabalhoArray = numAcidenteTrabalhoArray[start:]
+    numAcidenteTransitoArray = numAcidenteTransitoArray[start:]
+    numEventualSuicidioArray = numEventualSuicidioArray[start:]
+    numEventualHomicidioArray = numEventualHomicidioArray[start:]
+    numOutrosAcidentesArray = numOutrosAcidentesArray[start:]
+    numIgnoradoArray = numIgnoradoArray[start:]
 
     count = 0
     numeroDias = len(numObitosCausaNaturalArray)
@@ -187,21 +219,27 @@ def cyclicGet( response ):
     req.add_header('Referer','https://servicos.min-saude.pt/sico/faces/estatisticas.jsp')
 
     response = urllib2.urlopen(req)
-
-    return response
+    return (response,month,year)
 
 try:
     i = 1
-    # get last month
-    # if none than none
     while True:
         print "iteration", i
-        response = cyclicGet(response)
-        i += 1
+        response,month,year = cyclicGet(response)
+        print "Analysing"
+        print month
+        print year
         if not response:
             break
+        if lastYear and lastMonth:
+            if year == lastYear and month <= lastMonth:
+                break
+        i += 1
 except Exception as e:
     print(str(e))
     pass
+# write already owned file
+for line in lines:
+    document.write(line)
 
 document.close()
