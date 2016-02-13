@@ -1,9 +1,9 @@
 {
   "name": "obitos_em_portugal",
-  "datapackage_version": "1.0",
+  "datapackage_version": "1.0.0",
   "title": "Óbitos em Portugal",
   "description": "Vigilância de Mortalidade",
-  "version": "1.0",
+  "version": "1.0.0",
   "keywords": ["obitos", "portugal"],
   "license": "ODbL",
   "sources": [{
@@ -17,7 +17,7 @@
   }],
   "resources": [
     {
-      "name": "obitos.csv",
+      "name": "obitos",
       "path": "data/obitos.csv",
       "format": "csv",
       "mediatype": "text/csv",
