@@ -1,8 +1,8 @@
 {
   "name": "obitos_em_portugal",
-  "datapackage_version": "1.0.0",
   "title": "Óbitos em Portugal",
   "description": "Vigilância de Mortalidade",
+  "homepage": "https://github.com/centraldedados/obitos",
   "version": "1.0.0",
   "keywords": ["obitos", "portugal"],
   "license": "ODbL",
